@@ -1,5 +1,10 @@
 provider "aws" {
-  region = "ap-southeast-5"
+  region  = "ap-southeast-5"
+  profile = "terraform"
+  assume_role {
+    role_arn     = "arn:aws:iam::197009133793:role/TerraformExecutionRole"
+    session_name = "TerraformLocalDev"
+  }
 }
 
 # Data sources query cloud provider for info about other rss
@@ -18,9 +23,9 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "app_server" {
   ami           = data.aws_ami.ubuntu.id # ID to the data source above
-  instance_type = "t3.micro"
+  instance_type = var.instance_type
 
   tags = {
-    Name = "learn-terraform"
+    Name = var.instance_name
   }
 }
