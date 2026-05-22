@@ -1,10 +1,10 @@
 provider "aws" {
   region  = "ap-southeast-5"
   profile = "terraform"
-  assume_role {
-    role_arn     = "arn:aws:iam::197009133793:role/TerraformExecutionRole"
-    session_name = "TerraformLocalDev"
-  }
+  # assume_role {
+  #   role_arn     = "arn:aws:iam::197009133793:role/TerraformExecutionRole"
+  #   session_name = "TerraformLocalDev"
+  # }
 }
 
 # Data sources query cloud provider for info about other rss
@@ -20,7 +20,6 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-/*
 resource "aws_instance" "app_server" {
   ami           = data.aws_ami.ubuntu.id # ID to the data source above
   instance_type = var.instance_type
@@ -32,7 +31,6 @@ resource "aws_instance" "app_server" {
     Name = var.instance_name
   }
 }
-*/
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
