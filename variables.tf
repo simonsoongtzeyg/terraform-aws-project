@@ -9,3 +9,9 @@ variable "instance_type" {
   type        = string
   default     = "t3.micro"
 }
+
+variable "aws_region" {
+  type        = string
+  default     = "ap-southeast-5"
+  description = "AWS region for all resources"
+}

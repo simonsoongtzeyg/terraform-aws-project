@@ -1,6 +1,6 @@
 provider "aws" {
-  region  = "ap-southeast-5"
-  profile = "terraform"
+  region = var.aws_region
+  # profile = "terraform"
   # assume_role {
   #   role_arn     = "arn:aws:iam::197009133793:role/TerraformExecutionRole"
   #   session_name = "TerraformLocalDev"
